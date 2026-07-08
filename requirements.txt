@@ -1,0 +1,2 @@
+# pygame-ce is required on Python 3.14+ (standard pygame has no wheels yet)
+pygame-ce>=2.5.0

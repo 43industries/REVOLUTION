@@ -1,0 +1,12 @@
+# PyInstaller
+build/
+dist/
+*.spec
+
+# Runtime / local
+revolution_save.json
+__pycache__/
+*.pyc
+
+# Posters (optional local assets)
+trailer_poster.png

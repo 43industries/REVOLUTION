@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#060408">
+  <title>REVOLUTION — Coming Soon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #060408;
+      --ink-mid: #0c080a;
+      --ember: #d45828;
+      --ember-glow: rgba(212, 88, 40, 0.45);
+      --gold: #e4bc5c;
+      --gold-deep: #9a7028;
+      --ash: #9a8b78;
+      --blood: #a02828;
+      --cream: #f2ebe0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      background: var(--ink);
+      color: var(--cream);
+      font-family: "Outfit", "Segoe UI", system-ui, -apple-system, sans-serif;
+      overflow: hidden;
+    }
+
+    .stage {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(ellipse 130% 90% at 50% 110%, rgba(200, 55, 30, 0.5), transparent 58%),
+        radial-gradient(ellipse 70% 55% at 85% 15%, rgba(212, 168, 75, 0.12), transparent 45%),
+        radial-gradient(ellipse 60% 45% at 12% 25%, rgba(80, 40, 90, 0.2), transparent 48%),
+        linear-gradient(185deg, #140c10 0%, var(--ink-mid) 38%, var(--ink) 72%, #030204 100%);
+      animation: skyPulse 14s ease-in-out infinite alternate;
+    }
+    .stage::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold-deep), var(--gold), var(--gold-deep), transparent);
+      opacity: 0.85;
+      z-index: 5;
+      box-shadow: 0 0 24px rgba(228, 188, 92, 0.35);
+    }
+    @keyframes skyPulse {
+      from { filter: brightness(0.96) contrast(1.03) saturate(1.02); }
+      to   { filter: brightness(1.06) contrast(1.1) saturate(1.08); }
+    }
+
+    .vignette {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 65% at 50% 45%, transparent 30%, rgba(0,0,0,0.75) 100%);
+      z-index: 2;
+    }
+    .grain {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      opacity: 0.055;
+      z-index: 3;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .scanlines {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      opacity: 0.04;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.45) 2px,
+        rgba(0,0,0,0.45) 3px
+      );
+    }
+
+    .slides {
+      position: relative;
+      z-index: 4;
+      width: min(94vw, 1000px);
+      text-align: center;
+      min-height: 44vh;
+      padding: 0 0.5rem;
+    }
+
+    .slide {
+      position: absolute;
+      left: 0; right: 0;
+      top: 50%;
+      transform: translateY(-50%) scale(0.94);
+      opacity: 0;
+      pointer-events: none;
+      filter: blur(6px);
+      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+                  filter 0.85s ease;
+    }
+    .slide.active {
+      opacity: 1;
+      transform: translateY(-50%) scale(1);
+      filter: blur(0);
+      pointer-events: auto;
+    }
+
+    .logo {
+      font-family: "Cinzel", "Times New Roman", serif;
+      font-size: clamp(2.5rem, 9.5vw, 4.85rem);
+      font-weight: 800;
+      letter-spacing: 0.42em;
+      text-indent: 0.42em;
+      line-height: 1.05;
+      background: linear-gradient(185deg, #fff6d4 0%, var(--gold) 42%, var(--gold-deep) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 3px 12px rgba(0,0,0,0.75)) drop-shadow(0 0 36px rgba(228, 188, 92, 0.25));
+      animation: titleGlow 3.2s ease-in-out infinite alternate, titleFloat 6s ease-in-out infinite;
+    }
+    @keyframes titleGlow {
+      from { filter: drop-shadow(0 3px 12px rgba(0,0,0,0.75)) drop-shadow(0 0 28px rgba(228, 188, 92, 0.18)); }
+      to   { filter: drop-shadow(0 3px 12px rgba(0,0,0,0.75)) drop-shadow(0 0 48px rgba(255, 210, 120, 0.42)); }
+    }
+    @keyframes titleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    .tag {
+      margin-top: 1.15rem;
+      font-size: clamp(0.95rem, 3vw, 1.28rem);
+      font-weight: 500;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--ash);
+    }
+    .soon-pill {
+      position: relative;
+      display: inline-block;
+      margin-top: 1.35rem;
+      padding: 0.5rem 1.65rem;
+      font-size: clamp(0.8rem, 2.3vw, 0.98rem);
+      font-weight: 700;
+      letter-spacing: 0.46em;
+      text-indent: 0.46em;
+      text-transform: uppercase;
+      color: #120c08;
+      background: linear-gradient(175deg, #f2d888 0%, #d4a84b 45%, #a67c28 100%);
+      border: 1px solid rgba(255, 235, 190, 0.55);
+      border-radius: 4px;
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.35),
+        0 4px 24px rgba(212, 168, 75, 0.45),
+        inset 0 1px 0 rgba(255,255,255,0.35);
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .soon-pill .pill-txt {
+      position: relative;
+      z-index: 1;
+    }
+    .soon-pill::after {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      z-index: 0;
+      pointer-events: none;
+      background: linear-gradient(
+        105deg,
+        transparent 40%,
+        rgba(255,255,255,0.38) 50%,
+        transparent 60%
+      );
+      animation: shimmer 3.5s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) rotate(12deg); }
+      100% { transform: translateX(200%) rotate(12deg); }
+    }
+    .studio {
+      margin-top: 0.75rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: #5c5248;
+    }
+
+    .huge {
+      font-size: clamp(1.55rem, 5.2vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.22;
+      color: var(--cream);
+      text-shadow: 0 2px 32px rgba(0,0,0,0.85), 0 0 1px rgba(0,0,0,0.5);
+      letter-spacing: -0.02em;
+    }
+    .huge em {
+      font-style: normal;
+      color: var(--ember);
+      text-shadow: 0 0 28px var(--ember-glow);
+    }
+
+    .sub {
+      margin-top: 1.55rem;
+      font-size: clamp(0.92rem, 2.5vw, 1.12rem);
+      font-weight: 400;
+      color: var(--ash);
+      max-width: 36em;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.62;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      justify-content: center;
+      margin-top: 1.75rem;
+    }
+    .chip {
+      border: 1px solid rgba(228, 188, 92, 0.4);
+      padding: 0.42rem 0.95rem;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: linear-gradient(180deg, rgba(25,18,14,0.85), rgba(8,6,8,0.92));
+      border-radius: 3px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    }
+
+    .boss {
+      font-family: "Cinzel", serif;
+      font-size: clamp(1.35rem, 4.2vw, 2.15rem);
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-indent: 0.18em;
+      color: #c83838;
+      text-shadow: 0 0 40px rgba(180, 40, 40, 0.65), 0 2px 0 rgba(0,0,0,0.6);
+    }
+    .boss-sub {
+      margin-top: 0.75rem;
+      font-size: 1rem;
+      color: var(--ash);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .poster {
+      margin: 1.5rem auto 0;
+      max-width: min(540px, 90vw);
+      border-radius: 6px;
+      display: none;
+      border: 1px solid rgba(228, 188, 92, 0.35);
+      box-shadow:
+        0 0 0 1px rgba(0,0,0,0.5),
+        0 20px 56px rgba(0,0,0,0.75),
+        0 0 60px rgba(212, 88, 40, 0.15);
+    }
+    .poster.show { display: block; animation: posterIn 0.9s ease-out both; }
+    @keyframes posterIn {
+      from { opacity: 0; transform: scale(0.97) translateY(8px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .cta {
+      margin-top: 1.5rem;
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      color: var(--gold);
+      letter-spacing: 0.12em;
+    }
+    .cta code {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.35rem 0.65rem;
+      background: rgba(0,0,0,0.5);
+      border-radius: 4px;
+      font-size: 0.9em;
+      color: #c9e8c0;
+      letter-spacing: 0.04em;
+    }
+
+    .bar-wrap {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 6;
+      padding: 1.1rem 4vw 1.35rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.88));
+    }
+    .bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #6a5e52;
+      margin-bottom: 0.4rem;
+    }
+    .bar {
+      height: 4px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.5);
+    }
+    .bar > i {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #7a2028, var(--ember), var(--gold), #f0d080);
+      box-shadow: 0 0 12px rgba(228, 188, 92, 0.35);
+      transition: width linear;
+    }
+
+    .controls {
+      position: absolute;
+      top: 1.1rem;
+      right: 1.35rem;
+      z-index: 7;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: #5c5248;
+      text-transform: uppercase;
+    }
+    kbd {
+      border: 1px solid rgba(228, 188, 92, 0.25);
+      padding: 0.2rem 0.45rem;
+      border-radius: 4px;
+      background: linear-gradient(180deg, #1c1612, #0e0a08);
+      color: var(--ash);
+      font-family: inherit;
+      font-size: 0.65rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="vignette"></div>
+    <div class="grain"></div>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="controls"><kbd>CLICK</kbd> skip &nbsp;·&nbsp; <kbd>SPACE</kbd> pause</div>
+
+    <div class="slides" id="slides">
+      <div class="slide active" data-i="0">
+        <div class="logo">REVOLUTION</div>
+        <p class="tag">No Electricity · No Mercy</p>
+        <div class="soon-pill"><span class="pill-txt">Coming soon</span></div>
+        <p class="studio">By 43 Industries</p>
+        <p class="sub">A stickman action game for PC — inspired by the world of NBC’s <em>Revolution</em>.</p>
+      </div>
+
+      <div class="slide" data-i="1">
+        <p class="huge">The <em>power</em> went out.</p>
+        <p class="sub">Cities fell dark. Streets belong to whoever still carries steel.</p>
+      </div>
+
+      <div class="slide" data-i="2">
+        <p class="huge">The <em>Militia</em> doesn’t negotiate.</p>
+        <p class="sub">Waves of soldiers and commanders — raining arrows from the line.</p>
+      </div>
+
+      <div class="slide" data-i="3">
+        <p class="huge">Six waves.<br>One <em>final reckoning</em>.</p>
+        <div class="chips">
+          <span class="chip">Checkpoints</span>
+          <span class="chip">720p HD</span>
+          <span class="chip">Procedural audio</span>
+          <span class="chip">High scores</span>
+        </div>
+      </div>
+
+      <div class="slide" data-i="4">
+        <p class="huge"><em>Sword.</em> &nbsp; <em>Bow.</em> &nbsp; <em>Crossbow.</em></p>
+        <p class="sub">Swap weapons on the fly. Pierce bolts. Charge shots. Swing through the line.</p>
+      </div>
+
+      <div class="slide" data-i="5">
+        <p class="huge">They <em>hunt</em> you.</p>
+        <p class="sub">Aggro, melee, and volleys from commanders — then the screen shakes for what comes next.</p>
+      </div>
+
+      <div class="slide" data-i="6">
+        <p class="boss">SEBASTIAN MONROE</p>
+        <p class="boss-sub">President of the Monroe Republic</p>
+        <p class="sub" style="margin-top:1.1rem">Three phases. Charge. Slam. Arrows. No second chances.</p>
+      </div>
+
+      <div class="slide" data-i="7">
+        <p class="huge"><em>Coming soon</em> for PC.</p>
+        <p class="sub">Wishlist energy: built for keyboard &amp; mouse, 720p HD, checkpoints, and a save file you own. When it drops: <code>Play.bat</code> or <code>python revolution.py</code>.</p>
+        <img class="poster" id="poster" src="trailer_poster.png" alt="REVOLUTION — coming soon" width="1280" height="720" onerror="this.style.display='none'">
+      </div>
+
+      <div class="slide" data-i="8">
+        <div class="logo" style="font-size:clamp(2rem,7vw,3.2rem)">NO MERCY</div>
+        <div class="soon-pill" style="margin-top:0.5rem"><span class="pill-txt">Coming soon</span></div>
+        <p class="cta" style="margin-top:1.25rem">By <strong>43 Industries</strong></p>
+        <p class="sub" style="margin-top:1rem">Press <strong>T</strong> on the title screen to open this trailer again.</p>
+      </div>
+    </div>
+
+    <div class="bar-wrap">
+      <div class="bar-label"><span id="cap">Beat 1 / 9</span><span id="hint">Auto-play</span></div>
+      <div class="bar"><i id="fill"></i></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var slides = [].slice.call(document.querySelectorAll('.slide'));
+      var dur = 4200;
+      var i = 0;
+      var t = null;
+      var paused = false;
+      var poster = document.getElementById('poster');
+      var cap = document.getElementById('cap');
+      var fill = document.getElementById('fill');
+      var hint = document.getElementById('hint');
+
+      function showPosterIfPresent() {
+        if (!poster) return;
+        poster.classList.remove('show');
+        poster.onload = function () { poster.classList.add('show'); };
+        if (poster.complete && poster.naturalWidth > 0) poster.classList.add('show');
+      }
+
+      function go(n) {
+        i = (n + slides.length) % slides.length;
+        slides.forEach(function (s, j) {
+          s.classList.toggle('active', j === i);
+        });
+        cap.textContent = 'Beat ' + (i + 1) + ' / ' + slides.length;
+        showPosterIfPresent();
+        restartBar();
+      }
+
+      function restartBar() {
+        var sec = (dur / 1000).toFixed(2) + 's';
+        fill.style.transition = 'none';
+        fill.style.width = '0%';
+        requestAnimationFrame(function () {
+          fill.style.transition = 'width ' + sec + ' linear';
+          fill.style.width = '100%';
+        });
+      }
+
+      function next() { go(i + 1); }
+      function prev() { go(i - 1); }
+
+      function schedule() {
+        clearTimeout(t);
+        if (paused) {
+          hint.textContent = 'Paused — SPACE';
+          return;
+        }
+        hint.textContent = 'Auto-play';
+        t = setTimeout(next, dur);
+      }
+
+      document.addEventListener('click', function (e) {
+        if (e.target.closest('.bar-wrap')) return;
+        next();
+        schedule();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.code === 'Space') {
+          e.preventDefault();
+          paused = !paused;
+          schedule();
+        }
+        if (e.key === 'ArrowRight') { next(); schedule(); }
+        if (e.key === 'ArrowLeft') { prev(); schedule(); }
+      });
+
+      go(0);
+      schedule();
+    })();
+  </script>
+</body>
+</html>
