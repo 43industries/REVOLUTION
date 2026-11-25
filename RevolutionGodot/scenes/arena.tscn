@@ -1,0 +1,118 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://scripts/arena.gd" id="1_arena"]
+[ext_resource type="PackedScene" path="res://scenes/ash.tscn" id="2_ash"]
+[ext_resource type="PackedScene" path="res://scenes/dummy.tscn" id="3_dummy"]
+[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="4_hud"]
+[ext_resource type="PackedScene" path="res://scenes/story_ui.tscn" id="5_story"]
+[ext_resource type="Script" path="res://scripts/env_set.gd" id="6_env"]
+[ext_resource type="Script" path="res://scripts/radio_chatter.gd" id="7_radio"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ground"]
+size = Vector3(60, 1, 12)
+
+[sub_resource type="BoxShape3D" id="BoxShape_ground"]
+size = Vector3(60, 1, 12)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ruin"]
+size = Vector3(2.2, 4.5, 2.0)
+
+[sub_resource type="Environment" id="Environment_1"]
+background_mode = 1
+background_color = Color(0.42, 0.28, 0.18, 1)
+ambient_light_source = 1
+ambient_light_color = Color(0.72, 0.48, 0.28, 1)
+ambient_light_energy = 0.55
+tonemap_mode = 2
+fog_enabled = true
+fog_light_color = Color(0.78, 0.52, 0.28, 1)
+fog_light_energy = 0.85
+fog_density = 0.012
+fog_sky_affect = 0.6
+fog_aerial_perspective = 0.15
+
+[node name="Arena" type="Node3D"]
+script = ExtResource("1_arena")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1")
+
+[node name="KeyLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.766, -0.42, 0.487, 0, 0.757, 0.653, -0.643, -0.5, 0.58, 4, 10, 6)
+light_color = Color(1.0, 0.72, 0.42, 1)
+light_energy = 1.55
+shadow_enabled = false
+
+[node name="FillLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866, 0.2, -0.458, 0, 0.916, 0.4, 0.5, -0.346, 0.793, -6, 6, -2)
+light_color = Color(0.35, 0.42, 0.62, 1)
+light_energy = 0.35
+shadow_enabled = false
+
+[node name="RimLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.707, -0.3, -0.64, 0, 0.905, -0.424, 0.707, -0.3, -0.64, -2, 8, -8)
+light_color = Color(0.95, 0.55, 0.25, 1)
+light_energy = 0.4
+shadow_enabled = false
+
+[node name="Ground" type="StaticBody3D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_ground")
+visible = false
+
+[node name="Collision" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape_ground")
+
+[node name="Ruins" type="Node3D" parent="."]
+visible = false
+
+[node name="Ruin1" type="MeshInstance3D" parent="Ruins"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.75, -2.5)
+mesh = SubResource("BoxMesh_ruin")
+
+[node name="Ruin2" type="MeshInstance3D" parent="Ruins"]
+transform = Transform3D(0.9, 0, 0, 0, 1.2, 0, 0, 0, 0.9, -3, 2.2, -3.2)
+mesh = SubResource("BoxMesh_ruin")
+
+[node name="Ruin3" type="MeshInstance3D" parent="Ruins"]
+transform = Transform3D(1.1, 0, 0, 0, 0.85, 0, 0, 0, 1, 6, 1.5, -2.8)
+mesh = SubResource("BoxMesh_ruin")
+
+[node name="Ruin4" type="MeshInstance3D" parent="Ruins"]
+transform = Transform3D(0.7, 0, 0, 0, 1.4, 0, 0, 0, 0.7, 12, 2.6, -3.5)
+mesh = SubResource("BoxMesh_ruin")
+
+[node name="TerrainRoot" type="Node3D" parent="."]
+
+[node name="PropsRoot" type="Node3D" parent="."]
+
+[node name="EnvSet" type="Node3D" parent="."]
+script = ExtResource("6_env")
+
+[node name="Ash" parent="." instance=ExtResource("2_ash")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="Dummy" parent="." instance=ExtResource("3_dummy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="CameraRig" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 6.5)
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+current = true
+fov = 40.0
+near = 0.1
+far = 140.0
+
+[node name="HUD" parent="." instance=ExtResource("4_hud")]
+
+[node name="StoryUI" parent="." instance=ExtResource("5_story")]
+
+[node name="RadioChatter" type="Node" parent="."]
+script = ExtResource("7_radio")

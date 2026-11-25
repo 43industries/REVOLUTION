@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://revdummy001"]
+
+[ext_resource type="Script" path="res://scripts/dummy.gd" id="1_dummy"]
+[ext_resource type="Script" path="res://scripts/placeholder_body.gd" id="2_body"]
+[ext_resource type="Script" path="res://scripts/combat.gd" id="3_combat"]
+[ext_resource type="Script" path="res://scripts/w_lane.gd" id="4_lane"]
+[ext_resource type="Script" path="res://scripts/toon_driver.gd" id="5_toon"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
+radius = 0.35
+height = 1.9
+
+[node name="Dummy" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 1
+script = ExtResource("1_dummy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
+shape = SubResource("CapsuleShape3D_1")
+
+[node name="Visuals" type="Node3D" parent="."]
+script = ExtResource("2_body")
+
+[node name="Combat" type="Node" parent="."]
+script = ExtResource("3_combat")
+
+[node name="WLane" type="Node" parent="."]
+script = ExtResource("4_lane")
+
+[node name="ToonDriver" type="Node" parent="."]
+script = ExtResource("5_toon")

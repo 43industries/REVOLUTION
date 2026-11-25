@@ -1,0 +1,28 @@
+{
+  "source": "revolution.py UPGRADE_CATALOG / TIER_GRANTS / GEAR_CATALOG",
+  "tier_grants": {
+    "0": ["block"],
+    "1": ["dodge"],
+    "2": ["parry", "bow_sweep"],
+    "3": ["sword_cleave"],
+    "4": ["crossbow_fan", "rewind"],
+    "5": ["perk_slot"],
+    "6": ["veteran_title"]
+  },
+  "upgrades": [
+    {"id": "hp_10", "name": "+10 Max HP", "tier": 1, "cost": 15, "type": "stat"},
+    {"id": "blade_sharp", "name": "Sharpened Blade (+8% sword)", "tier": 2, "cost": 30, "type": "gear", "slot": "blade", "gear_id": "sharp"},
+    {"id": "quiver_fast", "name": "Fast Quiver (-15% bow charge)", "tier": 2, "cost": 25, "type": "gear", "slot": "quiver", "gear_id": "fast"},
+    {"id": "frame_pierce", "name": "Piercing Frame (3 pierce)", "tier": 3, "cost": 35, "type": "gear", "slot": "frame", "gear_id": "pierce"},
+    {"id": "double_nock", "name": "Double Nock (2 arrows charged)", "tier": 3, "cost": 40, "type": "move"},
+    {"id": "perk_bloodlust", "name": "Perk: Bloodlust (+1 scrap/kill)", "tier": 2, "cost": 50, "type": "perk", "perk": "bloodlust"},
+    {"id": "perk_iron_guard", "name": "Perk: Iron Guard (+10% block)", "tier": 3, "cost": 45, "type": "perk", "perk": "iron_guard"},
+    {"id": "perk_riposte", "name": "Perk: Riposte (2x parry counter)", "tier": 4, "cost": 60, "type": "perk", "perk": "riposte"},
+    {"id": "perk_chronoscope", "name": "Perk: Chronoscope (+echo time)", "tier": 3, "cost": 48, "type": "perk", "perk": "chronoscope"},
+    {"id": "perk_overclock", "name": "Perk: Overclock (+parry slow-mo)", "tier": 3, "cost": 52, "type": "perk", "perk": "overclock"},
+    {"id": "perk_rewind_cell", "name": "Perk: Rewind Cell (+1 rewind)", "tier": 4, "cost": 65, "type": "perk", "perk": "rewind_cell"},
+    {"id": "blade_heavy", "name": "Heavy Blade (+12% sword, slower)", "tier": 4, "cost": 55, "type": "gear", "slot": "blade", "gear_id": "heavy"},
+    {"id": "frame_heavy", "name": "Heavy Frame (+15% bolt dmg)", "tier": 5, "cost": 70, "type": "gear", "slot": "frame", "gear_id": "heavy"}
+  ],
+  "scrap_sector_clear": 25
+}

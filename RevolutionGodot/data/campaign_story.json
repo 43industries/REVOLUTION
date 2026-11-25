@@ -1,0 +1,155 @@
+{
+  "hero_name": "Ash Trace",
+  "hero_lost_name": "Mira",
+  "prologue": [
+    "My name is Ash Trace. Fifteen years since the lights died — I still see them when I close my eyes.",
+    "I wore Monroe's colors once. I don't anymore.",
+    "Someone I loved — Mira — was taken to Philadelphia. I follow the chalk north.",
+    "Arrows in my own hand, I swear. The war map isn't strategy. It's the only road left."
+  ],
+  "sectors": [
+    {
+      "id": "fringe",
+      "title": "The Fringe",
+      "blurb": "Ash's first chalk marks",
+      "rumor": "Militia roads. Stay low.",
+      "briefing": [
+        "THE FRINGE — edge of what's left.",
+        "Militia patrols treat these roads like property. I used to walk them in their colors.",
+        "Break through. Chalk arrows point north — my handwriting, or a ghost of it."
+      ],
+      "clear": "The patrol breaks. My chalk's still here. So am I.",
+      "blurb_after": "Patrols scattered — Ash's chalk trail north open",
+      "radio": [
+        "RADIO: …Militia sweep on the fringe roads — hold the chalk lines…",
+        "ASH (memory): I wrote those arrows. I led people into cages."
+      ],
+      "env": "fringe"
+    },
+    {
+      "id": "dead_grid",
+      "title": "Dead Grid",
+      "blurb": "Where the wires still sing",
+      "rumor": "Beyond the fringe — nothing hums.",
+      "briefing": [
+        "DEAD GRID — substation country.",
+        "Every wire is cold. Every tower is silent. My head still aches near the concrete.",
+        "Locals swear something hums below. I believe them. The grid remembers."
+      ],
+      "clear": "The wires sing. My head splits — but I know which way is north.",
+      "blurb_after": "Dead grid… Ash felt the current below",
+      "radio": [
+        "RADIO: …substation dark — do not approach the humming basements…",
+        "ASH (memory): The blackout didn't end. It went underground."
+      ],
+      "env": "dead_grid"
+    },
+    {
+      "id": "ash_corridor",
+      "title": "Ash Corridor",
+      "blurb": "Named for fire — and Trace",
+      "rumor": "Smoke and orders from upstream.",
+      "briefing": [
+        "ASH CORRIDOR — smoke on the horizon.",
+        "Commanders push forward. Orders coordinated. Someone upstream is planning this.",
+        "I burned this name into the dirt once. Now I cut through it for Mira."
+      ],
+      "clear": "They burn the corridor. They can't burn the trail.",
+      "blurb_after": "Corridor held — commanders retreating",
+      "radio": [
+        "RADIO: …corridor smoke confirmed — commanders advancing…",
+        "ASH (memory): They named it after the fire. Or after me."
+      ],
+      "env": "ash_corridor"
+    },
+    {
+      "id": "broken_line",
+      "title": "Broken Line",
+      "blurb": "Where Mira was taken",
+      "rumor": "Refugees speak of Philadelphia.",
+      "briefing": [
+        "BROKEN LINE — refugee track.",
+        "Families fled north until the Militia closed the crossing. I was there. I followed orders.",
+        "Mira was loaded onto a Republic wagon. I didn't stop it. I quit that night."
+      ],
+      "clear": "Families cross because I cleared it. That's the debt. Mira's mark is older than I remembered.",
+      "blurb_after": "Crossing open — debt paid toward Mira",
+      "radio": [
+        "RADIO: …crossing sealed — wagons north to Philadelphia only…",
+        "ASH (memory): I watched the wagon leave. I still hear the wheels."
+      ],
+      "env": "broken_line"
+    },
+    {
+      "id": "iron_march",
+      "title": "Iron March",
+      "blurb": "They remember Ash's face",
+      "rumor": "Full companies on the march.",
+      "briefing": [
+        "IRON MARCH — open ground.",
+        "Full companies. Full authorization. They're not patrolling — they're hunting.",
+        "Some of them still remember my face from the uniform. Good. Let them."
+      ],
+      "clear": "The march falters. They know my face. They know I'm coming.",
+      "blurb_after": "March broken — capital within reach",
+      "radio": [
+        "RADIO: …Trace spotted — authorization to engage…",
+        "MILITIA: That's Trace. Fire!"
+      ],
+      "env": "iron_march"
+    },
+    {
+      "id": "last_gate",
+      "title": "The Last Gate",
+      "blurb": "No reinforcements — only Ash",
+      "rumor": "Last stop before the capital.",
+      "briefing": [
+        "THE LAST GATE — last settlement before the capital.",
+        "Turn back and live. Push through and the Republic answers.",
+        "No reinforcements. Just me — and whatever's left of who I was before I lost Mira."
+      ],
+      "clear": "The gate opens. Philadelphia waits. No more excuses.",
+      "blurb_after": "Last gate passed — citadel ahead",
+      "radio": [
+        "RADIO: …capital perimeter — no civilian traffic…",
+        "ASH (memory): Past this gate, there is only Monroe."
+      ],
+      "env": "last_gate"
+    },
+    {
+      "id": "philadelphia",
+      "title": "Philadelphia",
+      "blurb": "Monroe — and Mira's trail",
+      "rumor": "Monroe waits in the towers.",
+      "briefing": [
+        "PHILADELPHIA — Monroe Citadel.",
+        "President Sebastian Monroe built an empire on the blackout. I once carried his orders.",
+        "End this. Find Mira. Or die in the shadow of his towers."
+      ],
+      "clear": "Monroe falls. The Republic cracks. Mira is still out there. The story isn't over.",
+      "blurb_after": "Monroe Citadel — fallen. Mira still missing.",
+      "radio": [
+        "MONROE: Trace. You still chalk roads for ghosts.",
+        "MONROE: You wore my colors. You followed my orders. And you still chase Mira?"
+      ],
+      "env": "philadelphia"
+    }
+  ],
+  "monroe_phase_taunts": [
+    null,
+    "MONROE: Trace. You still chalk roads for ghosts.",
+    "MONROE: You wore my colors. You followed my orders. And you still chase Mira?",
+    "MONROE: I built a nation for the living. You die for the dead!"
+  ],
+  "death_lines": [
+    "The Militia writes Ash Trace off the roster. Again.",
+    "The chalk outlasts me. Someone else will follow it.",
+    "I die within sight of the towers. Mira never knows.",
+    "Ash Trace falls. The road to Mira goes dark — for now."
+  ],
+  "victory_lines": [
+    "Monroe is down. The Republic cracks.",
+    "Philadelphia is free tonight. Mira is still out there somewhere.",
+    "No one stops me from looking. — Ash Trace"
+  ]
+}

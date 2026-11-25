@@ -1,0 +1,56 @@
+{
+  "source": "revolution.py WEAPON_PROFILES",
+  "unit_note": "reach values are pygame pixels; UE converts ~px*2.8 to Unreal units in RevWeaponProfileLibrary",
+  "sword": {
+    "combo": ["jab", "slash", "finisher"],
+    "combo_window": 48,
+    "anim_len": 22,
+    "cd_max": 36,
+    "active_lo": 9,
+    "active_hi": 13,
+    "moves": {
+      "jab":      { "reach": 42, "dmg": [16, 24], "kb": 5.2, "freeze": 3, "shake": [7, 9],  "lunge": 0.85 },
+      "slash":    { "reach": 48, "dmg": [22, 34], "kb": 6.8, "freeze": 3, "shake": [7, 9],  "lunge": 1.05 },
+      "finisher": { "reach": 54, "dmg": [28, 42], "kb": 8.5, "freeze": 5, "shake": [10, 12], "lunge": 1.35 },
+      "cleave":   { "reach": 58, "dmg": [32, 48], "kb": 9.0, "freeze": 5, "shake": [10, 12], "lunge": 1.20, "multi": 2 }
+    }
+  },
+  "bow": {
+    "melee": {
+      "pommel": { "reach": 32, "dmg": [10, 16], "kb": 4.0, "freeze": 2, "shake": [4, 6], "anim_len": 16, "active_lo": 6, "active_hi": 9 },
+      "sweep":  { "reach": 40, "dmg": [14, 20], "kb": 3.0, "freeze": 2, "shake": [5, 7], "anim_len": 20, "active_lo": 8, "active_hi": 11, "trip": true }
+    },
+    "quick_shot_dmg": [12, 18],
+    "charge_dmg": [22, 35],
+    "bow_cd": 45,
+    "charge_max": 40
+  },
+  "crossbow": {
+    "melee": {
+      "bash": { "reach": 36, "dmg": [18, 26], "kb": 6.0, "freeze": 3, "shake": [6, 8], "anim_len": 18, "active_lo": 7, "active_hi": 10, "break_block": true }
+    },
+    "bolt_dmg": [30, 45],
+    "bolt_cd": 30,
+    "fan_cd": 60,
+    "pierce": 2
+  },
+  "time_spec": {
+    "slow_scale": 0.35,
+    "parry_slow_frames": 42,
+    "hold_extend_frames": 3,
+    "meter_drain": 0.55,
+    "meter_regen": 0.22,
+    "meter_max": 100.0,
+    "echo_lead_frames": 22,
+    "echo_flash_frames": 28,
+    "boss_echo_frames": 36
+  },
+  "rewind_spec": {
+    "buffer_frames": 90,
+    "rewind_frames": 90,
+    "flash_frames": 15,
+    "death_window": 60,
+    "charges_base": 1,
+    "perk_charge_bonus": 1
+  }
+}
